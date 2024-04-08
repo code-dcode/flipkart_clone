@@ -24,7 +24,7 @@ export const Mobile = () => {
                     <img src="https://rukminim2.flixcart.com/fk-p-flap/2000/2000/image/8d12f236bd7274a2.jpg?q=50" alt="#" width='100%' />
                 </Stack>
                 <Grid container columnSpacing={2} pt={1}>
-                    <Grid item xs={2}>
+                    {/* <Grid item xs={2}>
                         <Box bgcolor='background.paper' sx={styles.gridLeft}>
                             <Typography fontWeight='500' fontSize='1.125rem' p={2}>
                                 Filters
@@ -54,8 +54,8 @@ export const Mobile = () => {
                                 </Stack>
                             </Box>
                         </Box>
-                    </Grid>
-                    <Grid item xs={10}>
+                    </Grid> */}
+                    <Grid item xs={12}>
                         <Box sx={styles.boxContainer2}>
                             {
                                 mobileProducts.map((data) => {

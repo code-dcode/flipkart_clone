@@ -7,7 +7,7 @@ import { cart, grocery } from './Assets'
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeFromCart, incrementQuantity, decrementQuantity } from '../../redux/actions/CartAction';
+import { removeFromCart, incrementQuantity, decrementQuantity, removeFromCartItemDetails, incrementQuantityCartItemDetails, decrementQuantityCartItemDetails } from '../../redux/actions/CartAction';
 
 function CustomTabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -45,6 +45,9 @@ export default function Cart() {
 
     // Retrieve the cart items from the Redux store
     const cartItems = useSelector((state) => state.cart.cartItems);
+    const itemDetailsCartItems = useSelector((state) => state.itemDetails.itemDetailsCartItems);
+    console.log("cartItems: ", cartItems);
+    console.log('itemDetailsCartItems', itemDetailsCartItems);
 
     //Sum of item prices
     const totalPrice = cartItems.reduce((acc, item) => {
@@ -67,12 +70,25 @@ export default function Cart() {
         dispatch(removeFromCart(productId));
     };
 
+    const handleRemoveFromCartItemDetails = (productId) => {
+        // Dispatch the REMOVE action with the product data
+        dispatch(removeFromCartItemDetails(productId));
+    };
+
     const handleIncrement = (productId) => {
         dispatch(incrementQuantity(productId));
     };
 
+    const handleIncrementQuantityCartItemDetails = (productId) => {
+        dispatch(incrementQuantityCartItemDetails(productId));
+    };
+
     const handleDecrement = (productId) => {
         dispatch(decrementQuantity(productId));
+    };
+
+    const handleDecrementQuantityCartItemDetails = (productId) => {
+        dispatch(decrementQuantityCartItemDetails(productId));
     };
 
     const [value, setValue] = React.useState(0);
@@ -290,6 +306,126 @@ export default function Cart() {
                                             }} />
                                         </>
                                     ))}
+                                </Box>
+                                <Box>
+                                    {
+                                        itemDetailsCartItems.map((item, index) => (
+                                            <>
+                                                <Grid container key={index} >
+                                                    <Grid item xs={1.5}
+                                                        sx={{
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+
+                                                        }}
+                                                    >
+                                                        <Box
+                                                            sx={{
+                                                                position: 'relative',
+                                                                width: 150,
+                                                                height: 150,
+                                                                margin: '0 auto',
+                                                            }}>
+                                                            <img src={item.imgUrl} alt={item.title}
+                                                                style={{
+                                                                    position: 'absolute',
+                                                                    maxWidth: '100%',
+                                                                    maxHeight: '100%',
+                                                                    margin: 'auto',
+                                                                    top: 0,
+                                                                    bottom: 0,
+                                                                    right: 0,
+                                                                    left: 0,
+                                                                }} />
+                                                        </Box>
+                                                    </Grid>
+                                                    <Grid item xs={6.5} py={1} minHeight='10rem' pl={5}>
+                                                        <Box>
+                                                            <Typography gutterBottom color='text.primary' sx={{
+                                                                whiteSpace: 'nowrap',
+                                                                overflow: 'hidden',
+                                                                maxWidth: 'inherit',
+                                                                textOverflow: 'ellipsis',
+                                                            }}>
+                                                                {item.title}
+                                                            </Typography>
+                                                            <Stack direction='row' columnGap='0.5rem' alignItems='center' pb={3}>
+                                                                <Typography variant='body2' color='text.secondary'>
+                                                                    Seller: Truenet Commerce
+                                                                </Typography>
+                                                                <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fa_62673a.png" alt="Flipkart Assured" style={{
+                                                                    maxWidth: '4rem',
+                                                                    maxHeight: '1rem',
+                                                                }} />
+                                                            </Stack>
+                                                            <Stack spacing={2}>
+                                                                {/* <Stack direction='row' alignItems='center' columnGap='0.5rem'>
+                                                                <Typography variant='body2' color='#878787' sx={{
+                                                                    textDecoration: 'line-through',
+                                                                }}>
+                                                                    {item.price.cost !== item.price.mrp ? item.price.mrp : null}
+                                                                </Typography>
+                                                                <Typography fontWeight='500' color='text.primary' fontSize='1.1rem'>
+                                                                    {item.price.cost}
+                                                                </Typography>
+                                                                <Typography variant='body2' fontWeight='500' color='rgb(0 128 0)'>
+                                                                    {item.price.discount}
+                                                                </Typography>
+                                                            </Stack> */}
+                                                                <Button sx={{
+                                                                    color: '#000000',
+                                                                    bgcolor: 'transparent',
+                                                                    maxWidth: '4rem',
+                                                                    '&:hover': {
+                                                                        color: '#1976d2',
+                                                                        bgcolor: 'transparent'
+                                                                    }
+                                                                }}
+                                                                    onClick={() => handleRemoveFromCartItemDetails(item.link)}
+                                                                >
+                                                                    Remove
+                                                                </Button>
+                                                                <Stack direction='row' alignItems='center' columnGap={1}>
+                                                                    <IconButton size='small' sx={{
+                                                                        border: '1px solid #c2c2c2',
+                                                                        padding: '0.5rem',
+                                                                    }} onClick={() => handleDecrementQuantityCartItemDetails(item.link)}>
+                                                                        <RemoveIcon sx={{
+                                                                            color: '#000000',
+                                                                            fontSize: '0.8rem',
+                                                                        }} />
+                                                                    </IconButton>
+                                                                    <Typography border='1px solid #c2c2c2' sx={{
+                                                                        px: '1.2rem',
+                                                                        py: '0.1rem',
+                                                                        borderRadius: '2px',
+                                                                        fontWeight: '500'
+                                                                    }}>{item.quantity}</Typography>
+                                                                    <IconButton size='small' sx={{
+                                                                        border: '1px solid #c2c2c2',
+                                                                        padding: '0.5rem',
+                                                                    }} onClick={() => handleIncrementQuantityCartItemDetails(item.link)}>
+                                                                        <AddIcon sx={{
+                                                                            color: '#000000',
+                                                                            fontSize: '0.8rem',
+                                                                        }} />
+                                                                    </IconButton>
+                                                                </Stack>
+                                                            </Stack>
+                                                        </Box>
+                                                    </Grid>
+                                                    <Grid item xs={4} pl={13} py={1} minHeight='10rem'>
+                                                        <Typography variant='caption'>
+                                                            Delivery by Mon Jan 22
+                                                        </Typography>
+                                                    </Grid>
+                                                </Grid>
+                                                <Divider sx={{
+                                                    my: '1rem'
+                                                }} />
+                                            </>
+                                        ))
+                                    }
                                 </Box>
 
                             </CustomTabPanel>

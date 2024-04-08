@@ -44,6 +44,7 @@ export default function Header() {
     const cartItems = useSelector((state) => state.cart.cartItems);
     console.log(cartItems);
     const wishList = useSelector((state) => state.cart.wishList);
+    const itemDetailsCartItems = useSelector((state) => state.itemDetails.itemDetailsCartItems);
 
     const [anchorMore, setAnchorMore] = useState(null);
     const [anchorLogin, setAnchorLogin] = useState(null);
@@ -85,7 +86,7 @@ export default function Header() {
                     <IconButton>
                         <MenuIcon sx={{ display: { xs: 'flex', sm: 'none' }, }} />
                     </IconButton>
-                    <Box component={Link} to='/flipkart_clone' sx={{ marginRight: '3rem', ml: 0 }}>
+                    <Box component={Link} to='/' sx={{ marginRight: '3rem', ml: 0 }}>
                         {console.log("data", fkHeaderLogo)}
                         <img alt='fk_title' src={fkHeaderLogo} />
                     </Box>
@@ -176,7 +177,7 @@ export default function Header() {
                     {/* Closing Login Menu */}
 
                     <Box component={Link} to={'/cart'} sx={Styles.headerLink}>
-                        <StyledBadge badgeContent={cartItems.length} color='error'>
+                        <StyledBadge badgeContent={cartItems.length + itemDetailsCartItems.length} color='error'>
                             <ShoppingCartOutlinedIcon sx={Styles.btnIcon} />
                         </StyledBadge>
                         <Typography sx={Styles.linkText}> Cart</Typography>

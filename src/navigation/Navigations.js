@@ -41,13 +41,14 @@ import { ProductDetailsPage } from '../screens/productDetails/ProductDetailsPage
 import { ConnectProductDetails } from '../screens/productDetails/ConnectProductDetails';
 import { mobileProducts } from '../screens/productListPage/assets/Data'
 import { DestinationPage } from '../screens/productDetails/DestinationPage';
+import { ItemDetailsPage } from '../screens/productDetails/ItemDetailsPage';
 // import { ProductDetailsPage } from '../productDetails/ProductDetailsPage'
 
 export default function Navigations() {
   return (
     <>
       <Routes>
-        <Route path='/flipkart_clone' element={<Main />} />
+        <Route path='/' element={<Main />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/terms' element={<Terms />} />
@@ -77,6 +78,7 @@ export default function Navigations() {
         {/* <Route path='/product1' element={<ConnectProductDetails />} ></Route> */}
         {/* <Route path='/product/:productId' element={<ProductDetailsPage />} /> */}
         <Route path="/:category/:productId" element={<ProductDetailsPage />} />
+        <Route path="/item-details/:itemId" element={<ItemDetailsPage />} />
         {/* <Route path='/product/:productId' element={<ConnectProductDetails />} /> */}
         {/* <Route path='/laptop/:productId' element={<ConnectProductDetails />} /> */}
         <Route path='/rewards' element={<Rewards />} />

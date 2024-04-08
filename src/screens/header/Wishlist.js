@@ -15,6 +15,8 @@ export const Wishlist = () => {
     const dispatch = useDispatch();
     const wishList = useSelector((state) => state.cart.wishList);
     console.log('wishlist: ', wishList)
+    const itemDetailsWishList = useSelector((state) => state.itemDetails.itemDetailsWishList);
+    console.log('itemDetailsWishList: ', itemDetailsWishList);
     const handleRemoveFromWishlist = (productId) => {
         dispatch(removeFromWishlist(productId));
     };
@@ -188,6 +190,16 @@ export const Wishlist = () => {
                                     <Divider />
                                 </>
                             ))}
+                            {
+                                itemDetailsWishList && itemDetailsWishList.map((item, index) => (
+                                    <>
+                                        <div key={index}>
+                                            <p>{item.title}</p>
+                                            <img src={item.imgUrl} alt={item.title} />
+                                        </div>
+                                    </>
+                                ))
+                            }
                         </Box>
                     </Grid>
                 </Grid>

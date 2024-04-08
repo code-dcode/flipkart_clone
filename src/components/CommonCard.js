@@ -1,5 +1,5 @@
 
-import { Card, CardActionArea, CardContent, CardMedia, Typography,Link } from '@mui/material'
+import { Card, CardActionArea, CardContent, CardMedia, Typography, Link } from '@mui/material'
 import React from 'react'
 
 //  -> This is a common card component. You can use it in your component.
@@ -10,49 +10,53 @@ import React from 'react'
 export const CommonCard = (props) => {
   return (
     <>
-         <Link style={{textDecoration:"none"}} href='/electronicProductDetail'>
-          <Card sx={{ width:200,
-        height:250, 
-        border:'solid 1px #e0e0e0'}}>
-      
-        <CardActionArea>
-        <CardMedia
-          component="img"
-          sx={{
-            width: '8.75rem',
-            height:'10rem',
-            objectFit: 'contain',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            marginTop: '8px',
-            '&:hover':{
-                width: '150px',
-                height:'170px',
-            }
-        }}
-          image={props.imageUrl}
-          alt={props.title}
-        />
-        <CardContent>
-          <Typography gutterBottom sx={{
-            fontSize: (props.customStyle) ?'16px':'13px',
-            color: (props.customStyle)? 'black':'grey',
-            textAlign: (props.customStyle) ? 'left':'center',
-          }}>
-            {props.title.substr(0,17)}...
-          </Typography>
-          <Typography sx={{
-            fontSize: (props.customStyle)? '16px':'14px',
-            fontWeight:500,
-            color: (props.customStyle)? 'green':'black',
-            textAlign: (props.customStyle) ? 'left':'center',
-          }}>
-            {props.subtitle}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
-    </Link>
+      <Link style={{ textDecoration: "none" }} href='/electronicProductDetail'>
+        <Card sx={{
+          width: 200,
+          height: 250,
+          border: 'solid 1px #e0e0e0',
+          boxShadow: 'none',
+          // boxShadow: '0 0 1px 0 rgba(8, 11, 14, 0.06), 0 6px 6px -1px rgba(8, 11, 14, 0.1)'
+        }}>
+
+          <CardActionArea>
+            <CardMedia
+              component="img"
+              sx={{
+                width: '8.75rem',
+                height: '10rem',
+                objectFit: 'contain',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                marginTop: '8px',
+                '&:hover': {
+                  width: '150px',
+                  height: '170px',
+                }
+              }}
+              image={props.imageUrl}
+              alt={props.title}
+            />
+            <CardContent>
+              <Typography gutterBottom sx={{
+                fontSize: (props.customStyle) ? '16px' : '13px',
+                color: (props.customStyle) ? 'black' : 'grey',
+                textAlign: (props.customStyle) ? 'left' : 'center',
+              }}>
+                {props.title.substr(0, 17)}...
+              </Typography>
+              <Typography sx={{
+                fontSize: (props.customStyle) ? '16px' : '14px',
+                fontWeight: 500,
+                color: (props.customStyle) ? 'green' : 'black',
+                textAlign: (props.customStyle) ? 'left' : 'center',
+              }}>
+                {props.subtitle}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+      </Link>
     </>
   )
 }
