@@ -432,6 +432,7 @@ export default function Cart() {
                             <CustomTabPanel value={value} index={1}>
                                 <Grid Container sx={{
                                     // flexDirection:'column',
+                                    display: 'flex',
                                     justifyContent: 'center',
                                 }} >
                                     <Grid item xs={4} sx={{
@@ -461,7 +462,8 @@ export default function Cart() {
                                         </Typography>
                                         <Button component={Link} to={'/grocery'} size='large' variant='contained' sx={{
                                             textTransform: 'capitalize',
-                                            width: '25%',
+                                            minWidth: '25%',
+                                            maxWidth: '50%',
                                             mt: 2,
                                             pt: '10px',
                                             pb: '10px',

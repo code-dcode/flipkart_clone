@@ -88,8 +88,8 @@ export const ItemDetailsPage = () => {
                                 <img src={imgUrl} alt={title}
                                     style={{
                                         position: 'absolute',
-                                        maxWidth: '100%',
-                                        maxHeight: '100%',
+                                        maxWidth: '85%',
+                                        maxHeight: '85%',
                                         margin: 'auto',
                                         top: 0,
                                         bottom: 0,

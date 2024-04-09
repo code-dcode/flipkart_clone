@@ -49,6 +49,7 @@ export default function Navigations() {
     <>
       <Routes>
         <Route path='/' element={<Main />} />
+        <Route path='/flipkart_clone' element={<Main />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/terms' element={<Terms />} />
