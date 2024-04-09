@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { Box, Button, Card, CardContent, FormControl, FormControlLabel, Radio, RadioGroup, Stack, TextField, Typography } from '@mui/material'
+import { Box, Button, Card, CardContent, FormControl, FormControlLabel, Radio, RadioGroup, Stack, TextField, Typography, Grid } from '@mui/material'
 import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
 import { bannerData2 } from './assets/Data';
 import SearchIcon from '@mui/icons-material/Search';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import { Link } from 'react-router-dom';
 
 const responsive = {
     desktop: {
@@ -72,6 +73,11 @@ const CustomLeftArrow = ({ onClick }) => {
         </Button>
     );
 };
+
+
+const handleClick = () => {
+    window.location.href = 'https://play.google.com/store/apps/details?id=com.flipkart.android&hl=en_IN&gl=US&pli=1&otracker=clp_banner_1_34.banner.BANNER_travel/flights_WQB9W8LVAU1A';
+}
 
 export const Travel = () => {
     const [fields, setFields] = useState({
@@ -217,7 +223,11 @@ export const Travel = () => {
 
                     <Stack direction='column'>
                         <img src="https://rukminim2.flixcart.com/fk-p-flap/3376/560/image/8bc53f67ccad6427.jpg?q=50" alt="#" width='100%' />
-                        <img src="https://rukminim2.flixcart.com/fk-p-flap/3600/3600/image/10256a9f3d5d1c9a.png?q=80" alt="#" width='100%' />
+                        <img src="https://rukminim2.flixcart.com/fk-p-flap/3600/3600/image/10256a9f3d5d1c9a.png?q=80" alt="#" style={{
+                            width: '100%',
+                            cursor: 'pointer',
+                        }} onClick={handleClick} />
+                        <img src="https://rukminim2.flixcart.com/fk-p-flap/2000/2000/image/5073f0a0570f79a3.png?q=50" alt="#" width='100%' />
                     </Stack>
                     <Typography mb={2} color='text.secondary' style={{
                         fontSize: '0.75rem',
